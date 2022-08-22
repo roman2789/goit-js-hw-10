@@ -25,14 +25,12 @@ function onCountryInput(e) {
     .then(countries => {
       refs.countryList.innerHTML = '';
       refs.countryInfo.innerHTML = '';
-      if (countries.length === 1) {
-        refs.countryList.innerHTML = createCountryList(countries);
-        refs.countryInfo.innerHTML = createCountryCard(countries);
-      } else if (countries.length >= 10) {
-        alertTooManyMatches();
-      } else {
-        refs.countryList.innerHTML = createCountryList(countries);
-      }
+      countries.length === 1
+        ? (refs.countryList.innerHTML = createCountryList(countries)) &&
+          (refs.countryInfo.innerHTML = createCountryCard(countries))
+        : countries.length >= 10
+        ? alertTooManyMatches()
+        : (refs.countryList.innerHTML = createCountryList(countries));
     })
     .catch(alertWrongName);
 }
