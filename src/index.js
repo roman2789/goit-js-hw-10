@@ -32,7 +32,7 @@ function onCountryInput(e) {
         ? alertTooManyMatches()
         : (refs.countryList.innerHTML = createCountryList(countries));
     })
-    .catch(alertWrongName);
+    .catch(alertNoName);
 }
 
 function createCountryList(countries) {
@@ -54,11 +54,11 @@ function createCountryCard(countries) {
     .map(({ capital, population, languages }) => {
       return `
         <ul class="country-info__list">
-            <li class="country-info__item"><p><b>Capital: </b>${capital}</p></li>
-            <li class="country-info__item"><p><b>Population: </b>${population}</p></li>
-            <li class="country-info__item"><p><b>Languages: </b>${Object.values(
+            <li class="country-info__item"><span><b>Capital: </b>${capital}</span></li>
+            <li class="country-info__item"><span><b>Population: </b>${population}</span></li>
+            <li class="country-info__item"><span><b>Languages: </b>${Object.values(
               languages
-            ).join(', ')}</p></li>
+            ).join(', ')}</span></li>
         </ul>
         `;
     })
@@ -66,7 +66,7 @@ function createCountryCard(countries) {
   return markup;
 }
 
-function alertWrongName() {
+function alertNoName() {
   Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
